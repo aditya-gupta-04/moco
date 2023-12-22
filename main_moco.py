@@ -413,7 +413,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
             images[0] = images[0].cuda(args.gpu, non_blocking=True)
             images[1] = images[1].cuda(args.gpu, non_blocking=True)
 
-        print(images.shape)
+        print(len(images))
         print(images[0].shape)
         print(images[1].shape)
 
