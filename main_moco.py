@@ -417,6 +417,10 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
         output, target = model(im_q=images[0], im_k=images[1])
         loss = criterion(output, target)
 
+        print(output.shape)
+        print(target.shape)
+        print(target)
+
         # acc1/acc5 are (K+1)-way contrast classifier accuracy
         # measure accuracy and record loss
         acc1, acc5 = accuracy(output, target, topk=(1, 5))
