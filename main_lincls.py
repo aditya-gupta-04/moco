@@ -341,7 +341,7 @@ def main_worker(gpu, ngpus_per_node, args):
         traindir,
         transforms.Compose(
             [
-                transforms.RandomResizedCrop(224),
+                transforms.RandomResizedCrop(24),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
                 normalize,
@@ -368,8 +368,8 @@ def main_worker(gpu, ngpus_per_node, args):
             valdir,
             transforms.Compose(
                 [
-                    transforms.Resize(256),
-                    transforms.CenterCrop(224),
+                    # transforms.Resize(256),
+                    transforms.CenterCrop(24),
                     transforms.ToTensor(),
                     normalize,
                 ]
@@ -447,6 +447,8 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
             images = images.cuda(args.gpu, non_blocking=True)
         target = target.cuda(args.gpu, non_blocking=True)
 
+        print(target.shape)
+        
         # compute output
         output = model(images)
         loss = criterion(output, target)
