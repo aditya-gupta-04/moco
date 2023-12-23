@@ -154,6 +154,10 @@ parser.add_argument(
     "--pretrained", default="", type=str, help="path to moco pretrained checkpoint"
 )
 
+parser.add_argument(
+    "--numclasses", default="", type=str, help="number of classes of linear head | Added by me"
+)
+
 best_acc1 = 0
 
 
@@ -227,6 +231,7 @@ def main_worker(gpu, ngpus_per_node, args):
     # create model
     print("=> creating model '{}'".format(args.arch))
     model = models.__dict__[args.arch]()
+    model.fc = nn.Linear(512,10)
 
     # freeze all layers but the last fc
     for name, param in model.named_parameters():
@@ -456,7 +461,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args):
                     
         print(output.shape)
         print(target.shape)
-        print(target)
+        print(loss)
         print()
 
         # measure accuracy and record loss
