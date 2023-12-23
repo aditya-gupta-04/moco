@@ -155,7 +155,7 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--numclasses", default="", type=str, help="number of classes of linear head | Added by me"
+    "--numclasses", default="", type=int, help="number of classes of linear head | Added by me"
 )
 
 best_acc1 = 0
